@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block head_title %}{% endblock %} - Django E-commerce</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#5758BB";>
+  <div class="container">
+    <a class="navbar-brand" href="">Shoping Mole</a>
+
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'shop:order_summary' %}">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart3" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
+              Cart
+
+          </a>
+        </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+              <div class="dropdown ml-3">
+                  <button type="button" class="btn btn-primary text-white nav-link dropdown-toggle" data-toggle="dropdown">
+                      Hi, {{ request.user.username }}
+                  </button>
+                  <ul class="dropdown-menu">
+                      <li><a href="" class="dropdown-item">My Profile</a></li>
+                      <li><a href="{% url 'shop:my_order' %}" class="dropdown-item">My Order</a></li>
+                      <li><a href="" class="dropdown-item">Setting</a></li>
+                      <li><a href="{% url 'account_logout' %}" class="dropdown-item bg-danger text-white">Logout</a></li>
+                  </ul>
+              </div>
+          </li>
+          {% else %}
+              <li class="nav-item"><a href="{% url 'shop:home' %}" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="{% url 'account_signup' %}" class="nav-link">Register</a></li>
+          <li class="nav-item"><a href="{% url 'account_login' %}" class="nav-link">Login</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% block content %}
+
+{% endblock %}
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+</body>
+</html>

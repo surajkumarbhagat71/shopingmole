@@ -1,0 +1,34 @@
+{% extends 'shops/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+<div class="row">
+    <div class="col-lg-7 mx-auto">
+        <div class="card ">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <img src="{{ object.product_image.url }}" alt="" style="width:100%;height:200px;object-fit: contain;">
+                    </div>
+                    <div class="col-lg-5 mt-5">
+                        <p>name: {{ object.product_name }}</p>
+                        <p>Brand: {{ object.brand }}</p>
+
+                        {% if object.discount_price %}
+                            <p class="text-muted">Discount: {{ object.discount_price }} %</p>
+                            <p class="text-muted"><del>Rs.{{ object.get_totals_price }}</del>
+                             <span class=" text-success">Rs.{{ object.get_discount_toal_price }}</span>
+                            </p>
+                            {% else %}
+                            <p>Price: {{ object.price }}</p>
+                        {% endif %}
+                        <a href="{% url 'shop:add_to_cart' object.product_id %}" class="btn btn-sm btn-success mt-4 py-2 px-2">Add To Card</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
